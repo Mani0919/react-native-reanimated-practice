@@ -1,5 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Animated, {
   useAnimatedProps,
   useAnimatedStyle,
@@ -11,44 +18,22 @@ import Svg, { Circle } from "react-native-svg";
 import Creatinganimatedview from "./animated/creatinganimatedview";
 import Animatedfunction from "./animated/animatedfunction";
 import Animatingstylesandprops from "./animated/animatingstylesandprops";
+import Customizinganimation from "./animated/customizinganimation";
+import WithSequence from "./animated/withSequence";
 
 export default function App() {
   const width = useSharedValue(100);
   const translateX = useSharedValue(0);
-  const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-
-
-  const r = useSharedValue(20);
-  const handleCircle = () => {
-    r.value += 10;
-  };
-
-  const animatedProps = useAnimatedProps(() => ({
-    r: withTiming(r.value),
-  }));
 
   return (
     <View style={styles.container}>
-      <Creatinganimatedview/>
-      <Animatedfunction/>
-      <Animatingstylesandprops/>
-    
-
-      {/* First Circle */}
-      <Svg style={{width: 100, height: 100}}>
-        <AnimatedCircle cx="50" cy="50" r={r.value} fill="blue" />
-      </Svg>
-
-      {/* Second Circle */}
-      <Svg style={styles.svgStyle}>
-        <AnimatedCircle cx="50" cy="50" fill="orange" animatedProps={animatedProps} />
-      </Svg>
-
-      {/* Change Radius Button */}
-      <TouchableOpacity style={styles.touchable} onPress={handleCircle}>
-        <Text style={styles.buttonText}>Increase Circle Radius</Text>
-      </TouchableOpacity>
-
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Creatinganimatedview />
+        <Animatedfunction />
+        <Animatingstylesandprops />
+        <Customizinganimation />
+        <WithSequence/>
+      </ScrollView>
       <StatusBar style="auto" />
     </View>
   );
@@ -60,6 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 50,
   },
   svgStyle: {
     marginTop: 20, // Spacing between circles
