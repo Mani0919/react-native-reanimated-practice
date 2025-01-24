@@ -20,22 +20,26 @@ import Animatedfunction from "./animated/animatedfunction";
 import Animatingstylesandprops from "./animated/animatingstylesandprops";
 import Customizinganimation from "./animated/customizinganimation";
 import WithSequence from "./animated/withSequence";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import HandlingGestures from "./animated/handlingGestures";
 export default function App() {
   const width = useSharedValue(100);
   const translateX = useSharedValue(0);
 
   return (
-    <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Creatinganimatedview />
-        <Animatedfunction />
-        <Animatingstylesandprops />
-        <Customizinganimation />
-        <WithSequence/>
-      </ScrollView>
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView>
+      <View style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Creatinganimatedview />
+          <Animatedfunction />
+          <Animatingstylesandprops />
+          <Customizinganimation />
+          <WithSequence />
+          <HandlingGestures/>
+        </ScrollView>
+        <StatusBar style="auto" />
+      </View>
+    </GestureHandlerRootView>
   );
 }
 
@@ -46,6 +50,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 50,
+    position:"relative"
   },
   svgStyle: {
     marginTop: 20, // Spacing between circles

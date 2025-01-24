@@ -49,7 +49,7 @@ export default function Customizinganimation({ width = 400 }) {
   const OFFSET = 40;
 
   const handlePress = () => {
-    offset.value = withRepeat(withTiming(OFFSET), 6, true);
+    offset.value = withRepeat(withTiming(OFFSET), 5, true);
   };
   return (
     <View style={styles.container}>
